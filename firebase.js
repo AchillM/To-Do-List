@@ -1,75 +1,22 @@
-/* ===========================
-   TASKR — firebase.js
-   Optional Cloud Sync Layer
-   ===========================
 
-   Aktifkan Firebase jika ingin sync
-   antar device / multi-user.
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.12.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-   SETUP:
-   1. Buka https://console.firebase.google.com
-   2. Buat project baru → tambah Web App
-   3. Copy firebaseConfig dari sana
-   4. Uncomment kode di bawah & isi config
-   5. Uncomment import di index.html jika pakai module
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAJQuoLBYGSZ8_sqZT2lbQd7JidZx2QVM4",
+    authDomain: "project-i01-c3424.firebaseapp.com",
+    projectId: "project-i01-c3424",
+    storageBucket: "project-i01-c3424.firebasestorage.app",
+    messagingSenderId: "373225700253",
+    appId: "1:373225700253:web:307cbdce4eb182830d0d74",
+    measurementId: "G-X8S76HJFTD"
+  };
 
-   DEPENDENCY (tambahkan di index.html sebelum firebase.js):
-   <script src="https://www.gstatic.com/firebasejs/10.x.x/firebase-app-compat.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/10.x.x/firebase-firestore-compat.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/10.x.x/firebase-auth-compat.js"></script>
-*/
-
-// ─── PASTE CONFIG FIREBASE DI SINI ──────────────────────
-/*
-const firebaseConfig = {
-  apiKey:            "YOUR_API_KEY",
-  authDomain:        "YOUR_PROJECT.firebaseapp.com",
-  projectId:         "YOUR_PROJECT_ID",
-  storageBucket:     "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId:             "YOUR_APP_ID"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db   = firebase.firestore();
-const auth = firebase.auth();
-
-// ── ANONYMOUS AUTH (optional, buat user ID unik) ─────────
-auth.signInAnonymously().catch(console.error);
-
-auth.onAuthStateChanged(user => {
-  if (!user) return;
-  const UID = user.uid;
-  window.__firebaseUID = UID;
-
-  // ── LISTEN realtime changes ─────────────────────────────
-  db.collection('users').doc(UID).collection('tasks')
-    .orderBy('createdAt', 'desc')
-    .onSnapshot(snapshot => {
-      const remoteTasks = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      // Merge dengan localStorage – remote menang
-      window.__mergeTasks && window.__mergeTasks(remoteTasks);
-    });
-});
-
-// ── EXPORT helpers ke window supaya bisa dipanggil app.js ─
-window.firebaseSync = {
-  save(task) {
-    const uid = window.__firebaseUID;
-    if (!uid) return;
-    db.collection('users').doc(uid).collection('tasks')
-      .doc(task.id).set(task, { merge: true });
-  },
-  delete(taskId) {
-    const uid = window.__firebaseUID;
-    if (!uid) return;
-    db.collection('users').doc(uid).collection('tasks')
-      .doc(taskId).delete();
-  }
-};
-*/
-
-// ── SAAT FIREBASE BELUM DIAKTIFKAN ───────────────────────
-// app.js tetap berjalan 100% dengan localStorage saja.
-// Tidak ada yang perlu diubah di app.js.
-window.firebaseSync = null; // placeholder — app.js checks this
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
