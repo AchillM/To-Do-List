@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TASKR — To-Do App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <header>
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <h1>TASKR</h1>
+    </div>
+    <div class="header-meta">
+      <span id="taskCount">0 tasks</span>
+      <span id="currentDate"></span>
+    </div>
+  </header>
+
+  <main>
+    <!-- Input Panel -->
+    <section class="input-panel">
+      <div class="input-group">
+        <input
+          type="text"
+          id="taskInput"
+          placeholder="Tulis task baru..."
+          autocomplete="off"
+          maxlength="120"
+        />
+        <input
+          type="date"
+          id="deadlineInput"
+          title="Deadline (opsional)"
+        />
+        <button id="addBtn" aria-label="Tambah Task">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          <span>ADD</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <section class="filter-bar">
+      <button class="filter-btn active" data-filter="all">ALL</button>
+      <button class="filter-btn" data-filter="pending">PENDING</button>
+      <button class="filter-btn" data-filter="completed">DONE</button>
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <span id="progressLabel">0%</span>
+      </div>
+    </section>
+
+    <!-- Task List -->
+    <section class="task-list-wrapper">
+      <ul id="taskList"></ul>
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">◎</div>
+        <p>Belum ada task.<br/>Tambahkan sesuatu.</p>
+      </div>
+    </section>
+
+    <!-- Footer actions -->
+    <section class="footer-actions">
+      <button id="clearCompleted">Hapus semua selesai</button>
+    </section>
+  </main>
+
+  <script src="firebase.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
